@@ -43,3 +43,9 @@ function grbase {(
   git add $(cat $tmp/files)
   git commit -F $tmp/commit
 )}
+
+function gamend {
+  commit=$(mktemp)
+  git log -1 --format=%B > "$commit"
+  git commit --amend -F "$commit" $@
+}

@@ -25,8 +25,8 @@ func red(text string) string {
 	return color("1;31m", text)
 }
 
-const (
-	CITC_ROOT = "/google/src/cloud/jasmuth/"
+var (
+	CITC_ROOT = "/google/src/cloud/"+os.Getenv("USER")
 )
 
 func printCompressedAbsPath(abspath string) {
@@ -107,6 +107,8 @@ func gitRepoAndBranch(path string) (repoRoot, repoPath, branch string, ok bool) 
 
 func main() {
 	pwd, _ := os.Getwd()
+
+	fmt.Print("[\\t]")
 
 	if root, path, branch, ok := gitRepoAndBranch(pwd); ok {
 		printCompressedAbsPath(root)
